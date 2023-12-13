@@ -1,0 +1,43 @@
+import numpy as np
+
+def main():
+    while True:
+        try:
+            num_of_inputs = int(input("Введіть кількість значень: "))
+            num_of_trials = int(input("Скільки разів ви хочете ввести дані: "))
+            if num_of_inputs <= 0 or num_of_trials <= 0:
+                print("Кількість значень та кількість операцій повинні бути більше 0.")
+                continue
+            break
+        except ValueError:
+            print("Будь ласка, введіть ціле число.")
+
+    all_means = []
+    all_variances = []
+
+    for i in range(num_of_trials):
+        data = []
+        print(f"Операція #{i + 1}:")
+        for j in range(num_of_inputs):
+            while True:
+                try:
+                    value = float(input(f"Введіть значення #{j + 1}: "))
+                    data.append(value)
+                    break
+                except ValueError:
+                    print("Будь ласка, введіть число.")
+
+        mean = np.mean(data)
+        variance = np.var(data)
+
+        all_means.append(mean)
+        all_variances.append(variance)
+
+        print(f"Математичне сподівання: {mean}")
+        print(f"Дисперсія: {variance}\n")
+
+    print(f"Середнє значення математичного сподівання: {np.mean(all_means)}")
+    print(f"Середнє значення дисперсії: {np.mean(all_variances)}")
+
+if __name__ == "__main__":
+    main()
