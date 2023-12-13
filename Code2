@@ -1,0 +1,44 @@
+import numpy as np
+
+def main():
+    # Функція main виконує головний вихід у програмі.
+    while True:
+        try:
+            num_of_inputs = int(input("Введіть кількість значень: "))
+            num_of_trials = int(input("Скільки разів ви хочете ввести дані: "))
+            if num_of_inputs <= 0 or num_of_trials <= 0:
+                print("Кількість значень та кількість операцій повинні бути більше 0.")
+                continue
+            break
+        except ValueError:
+            print("Будь ласка, введіть ціле число.")
+
+    all_means = []  # Створюємо список для зберігання усіх значень математичного сподівання.
+    all_variances = []  # Створюємо список для зберігання усіх значень дисперсії.
+
+    for i in range(num_of_trials):
+        data = []  # Створюємо список для зберігання введених користувачем даних.
+        print(f"Операція #{i + 1}:")
+        for j in range(num_of_inputs):
+            while True:
+                try:
+                    value = float(input(f"Введіть значення #{j + 1}: "))
+                    data.append(value)  # Додаємо значення до списку даних.
+                    break
+                except ValueError:
+                    print("Будь ласка, введіть число.")
+
+        mean = np.mean(data)  # Обчислюємо математичне сподівання для введених даних.
+        variance = np.var(data)  # Обчислюємо дисперсію для введених даних.
+
+        all_means.append(mean)  # Додаємо значення математичного сподівання до загального списку.
+        all_variances.append(variance)  # Додаємо значення дисперсії до загального списку.
+
+        print(f"Математичне сподівання: {mean}")
+        print(f"Дисперсія: {variance}\n")
+
+    print(f"Середнє значення математичного сподівання: {np.mean(all_means)}")
+    print(f"Середнє значення дисперсії: {np.mean(all_variances)}")
+
+if __name__ == "__main__":
+    main()
